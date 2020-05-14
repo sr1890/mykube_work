@@ -1,3 +1,5 @@
+#Install kops AWS 
+
 $aws s3api create-bucket \
     --bucket shivify-state-store \
     --region us-east-1
@@ -34,14 +36,6 @@ master-us-east-1a       Master  c4.large        1       1       us-east-1a
 nodes                   Node    t2.medium       3       5       us-east-1a,us-east-1b,us-east-1c
 
 $kops update cluster ${NAME} --yes
-
-
- * validate cluster: kops validate cluster
- * list nodes: kubectl get nodes --show-labels
- * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.fleetman.k8s.local
- * the admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
- * read about installing addons at: https://github.com/kubernetes/kops/blob/master/docs/operations/addons.md.
-
 $ kops validate cluster
 
  
