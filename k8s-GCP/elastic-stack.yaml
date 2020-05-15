@@ -243,11 +243,12 @@ spec:
         name: elasticsearch-logging-init
         securityContext:
           privileged: true
+      restartPolicy:  OnFailure
   volumeClaimTemplates:
   - metadata:
       name: elasticsearch-logging
     spec:
-      storageClassName: cloud-elk-ssd
+      storageClassName: cloud-ssd
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
