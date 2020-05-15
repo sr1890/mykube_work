@@ -243,7 +243,6 @@ spec:
         name: elasticsearch-logging-init
         securityContext:
           privileged: true
-      restartPolicy:  OnFailure
   volumeClaimTemplates:
   - metadata:
       name: elasticsearch-logging
