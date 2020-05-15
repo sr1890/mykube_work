@@ -1,0 +1,21 @@
+# What do want?
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elk-pvc
+spec:
+  storageClassName: cloud-elk-ssd
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 7Gi
+---
+# How do we want it implemented
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cloud-elk-ssd
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
