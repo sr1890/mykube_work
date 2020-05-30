@@ -6,7 +6,7 @@ metadata:
   name: public-routing
 spec:
   rules:
-    - host: fleetman.com
+    - host: fleetman.shivify.com
       http:
         paths:
           - path: /
