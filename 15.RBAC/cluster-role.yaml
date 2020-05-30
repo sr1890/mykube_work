@@ -1,0 +1,50 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+   name: new-joiner
+rules:
+- apiGroups: ["","apps","autoscaling","extension","cluster"] # Core API AND apps
+  resources: ["*"]  # pods, services, deployments...
+  verbs: ["get", "list", "watch"]
+
+---
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: new-joiner-role
+subjects:
+- kind: User
+  name: oracle
+roleRef:
+  kind: ClusterRole
+  name: new-joiner
+  apiGroup: rbac.authorization.k8s.io
+
+
+--- 
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+   name: new-joiner
+   namespace: playground
+rules:
+- apiGroups: ["","apps","extension"] # Core API AND apps
+  resources: ["*"]  # pods, services, deployments...
+  verbs: ["*"]
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: new-joiner-role-binding
+  namespace: playground
+subjects:
+- kind: User
+  name: oracle
+roleRef:
+  kind: Role
+  name: new-joiner
+  apiGroup: rbac.authorization.k8s.io
